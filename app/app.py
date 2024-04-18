@@ -10,7 +10,7 @@ df = palmerpenguins.load_penguins()
 ui.page_opts(title="Laura's Penguins Dashboard", fillable=True)
 
 
-with ui.sidebar(title="Filter Controls"):
+with ui.sidebar(title="Filter Controls", style="background-color:ghostwhite"):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
     ui.input_checkbox_group(
         "species",
@@ -49,21 +49,21 @@ with ui.sidebar(title="Filter Controls"):
 
 
 with ui.layout_column_wrap(fill=False):
-    with ui.value_box(showcase=icon_svg("earlybirds")):
+    with ui.value_box(showcase=icon_svg("earlybirds"), theme="bg-gradient-blue-purple"):
         "Number of Penguins"
 
         @render.text
         def count():
             return filtered_df().shape[0]
 
-    with ui.value_box(showcase=icon_svg("ruler-horizontal")):
+    with ui.value_box(showcase=icon_svg("ruler-horizontal"), theme="bg-gradient-blue-purple"):
         "Average Bill Length"
 
         @render.text
         def bill_length():
             return f"{filtered_df()['bill_length_mm'].mean():.1f} mm"
 
-    with ui.value_box(showcase=icon_svg("ruler-vertical")):
+    with ui.value_box(showcase=icon_svg("ruler-vertical"), theme="bg-gradient-blue-purple"):
         "Average Bill Depth"
 
         @render.text
@@ -72,8 +72,8 @@ with ui.layout_column_wrap(fill=False):
 
 
 with ui.layout_columns():
-    with ui.card(full_screen=True):
-        ui.card_header("Bill Length and Depth")
+    with ui.card(full_screen=True, style="background-color:ghostwhite"):
+        ui.card_header("Bill Length and Depth", style="background-color:cornflowerblue")
 
         @render.plot
         def length_depth():
@@ -84,8 +84,8 @@ with ui.layout_columns():
                 hue="species",
             )
 
-    with ui.card(full_screen=True):
-        ui.card_header("Penguin Data")
+    with ui.card(full_screen=True, style="background-color:ghostwhite"):
+        ui.card_header("Penguin Data", style="background-color:cornflowerblue")
 
         @render.data_frame
         def summary_statistics():
