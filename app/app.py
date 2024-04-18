@@ -6,16 +6,20 @@ from shiny import reactive
 from shiny.express import input, render, ui
 import palmerpenguins 
 
+from shinyswatch import theme 
+
 #use built-in function to load the Palmser Penguins dataset
 df = palmerpenguins.load_penguins()
 
-#Title the dashboard
-ui.page_opts(title="Laura's Penguins Dashboard", fillable=True)
+theme.cerulean()
+
+#Title the dashboard, change background color
+ui.page_opts(title="Laura's Penguins Dashboard", style="background-color: lavender", full=True)
 
 #create sidebar for user interaction
 with ui.sidebar(title="Filter Controls", style="background-color:ghostwhite"):
     #create a slider input to filter for body_mass_g
-    ui.input_slider("mass", "Mass", 2000, 6000, 6000)
+    ui.input_slider("mass", "Mass (g)", 2000, 6000, 6000)
     #create checkboxes to filter by penguin species
     ui.input_checkbox_group(
         "species",
@@ -34,7 +38,7 @@ with ui.sidebar(title="Filter Controls", style="background-color:ghostwhite"):
     )
     ui.a(
         "GitHub App",
-        href="https://denisecase.github.io/cintel-07-tdash/",
+        href="https://lauravos.github.io/cintel-07-tdash/",
         target="_blank",
     )
     ui.a(
